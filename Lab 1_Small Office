@@ -1,1 +1,98 @@
+##YAML##
+---
+hostname: SW1
+version: "12.2(37)SE1"
 
+global_settings:
+  ip_routing: true
+  ip_classless: true
+  spanning_tree_mode: pvst
+  ip_flow_export_version: 9
+  service_timestamps_log_datetime_msec: false
+  service_timestamps_debug_datetime_msec: false
+  service_password_encryption: false
+
+interfaces:
+  FastEthernet0/1:
+    switchport: true
+    mode: trunk
+    encapsulation: dot1q
+  FastEthernet0/19:
+    switchport: true
+    mode: access
+    access_vlan: 50
+  FastEthernet0/20:
+    switchport: true
+    mode: access
+    access_vlan: 50
+  FastEthernet0/21:
+    switchport: true
+    mode: access
+    access_vlan: 50
+  FastEthernet0/22:
+    switchport: true
+    mode: access
+    access_vlan: 50
+  FastEthernet0/23:
+    switchport: true
+    mode: access
+    access_vlan: 40
+  FastEthernet0/24:
+    switchport: true
+    mode: access
+    access_vlan: 40
+  GigabitEthernet0/1:
+    switchport: false
+    ip_address: 10.0.0.1
+    subnet_mask: 255.255.255.252
+    duplex: auto
+    speed: auto
+  GigabitEthernet0/2:
+    switchport: true
+    mode: trunk
+    encapsulation: dot1q
+
+vlan_interfaces:
+  Vlan1:
+    ip_address: 192.168.1.1
+    subnet_mask: 255.255.255.0
+    ip_helper_address: 192.168.1.2
+  Vlan10:
+    mac_address: 0001.6452.2501
+    ip_address: 192.168.10.1
+    subnet_mask: 255.255.255.0
+    ip_helper_address: 192.168.1.2
+  Vlan20:
+    mac_address: 0001.6452.2502
+    ip_address: 192.168.20.1
+    subnet_mask: 255.255.255.0
+    ip_helper_address: 192.168.1.2
+  Vlan30:
+    mac_address: 0001.6452.2503
+    ip_address: 192.168.30.1
+    subnet_mask: 255.255.255.0
+    ip_helper_address: 192.168.1.2
+  Vlan40:
+    mac_address: 0001.6452.2504
+    ip_address: 192.168.40.1
+    subnet_mask: 255.255.255.0
+    ip_helper_address: 192.168.1.2
+  Vlan50:
+    mac_address: 0001.6452.2505
+    ip_address: 192.168.50.1
+    subnet_mask: 255.255.255.0
+    ip_helper_address: 192.168.1.2
+
+static_routes:
+  - destination: 0.0.0.0
+    mask: 0.0.0.0
+    next_hop: GigabitEthernet0/1
+
+line_con_0:
+  configured: true
+
+line_aux_0:
+  configured: true
+
+line_vty_0_4:
+  login: true
